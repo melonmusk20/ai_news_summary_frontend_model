@@ -15,7 +15,7 @@ function App() {
   const loadArticles = () => {
     setLoading(true);
 
-    fetch("http://localhost:8080/articles")
+    fetch("https://ai-news-summary-backend-model.onrender.com/articles")
       .then((res) => res.json())
       .then((data) => {
         setArticles(data.reverse()); // newest first
@@ -30,7 +30,7 @@ function App() {
   const fetchFreshNews = () => {
     setFetching(true);
 
-    fetch("http://localhost:8080/fetch-news")
+    fetch("https://ai-news-summary-backend-model.onrender.com/fetch-news")
       .then((res) => res.json())
       .then(() => {
         loadArticles();
