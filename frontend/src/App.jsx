@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import API from "./services/api";
 
 function App() {
   const [articles, setArticles] = useState([]);
@@ -7,18 +8,15 @@ function App() {
   const [search, setSearch] = useState("");
   const [sentimentFilter, setSentimentFilter] = useState("All");
 
-  // Load saved articles on page open
   useEffect(() => {
     loadArticles();
   }, []);
 
   const loadArticles = () => {
     setLoading(true);
-
-    fetch("https://ai-news-summary-backend-model.onrender.com/articles")
-      .then((res) => res.json())
-      .then((data) => {
-        setArticles(data.reverse()); // newest first
+    API.get("/articles")
+      .then((res) => {
+        setArticles(res.data.reverse());
         setLoading(false);
       })
       .catch((err) => {
@@ -29,9 +27,7 @@ function App() {
 
   const fetchFreshNews = () => {
     setFetching(true);
-
-    fetch("https://ai-news-summary-backend-model.onrender.com/fetch-news")
-      .then((res) => res.json())
+    API.get("/fetch-news")
       .then(() => {
         loadArticles();
         setFetching(false);
@@ -42,35 +38,21 @@ function App() {
       });
   };
 
-  // Sentiment badge colors
   const getSentimentColor = (sentiment) => {
     if (!sentiment) return "bg-gray-100 text-gray-700";
-
     const s = sentiment.toLowerCase();
-
-    if (s.includes("positive")) {
-      return "bg-green-100 text-green-700";
-    }
-
-    if (s.includes("negative")) {
-      return "bg-red-100 text-red-700";
-    }
-
+    if (s.includes("positive")) return "bg-green-100 text-green-700";
+    if (s.includes("negative")) return "bg-red-100 text-red-700";
     return "bg-gray-100 text-gray-700";
   };
 
-  // Filter + Search
   const filteredArticles = articles.filter((article) => {
     const matchesSearch = article.title
       ?.toLowerCase()
       .includes(search.toLowerCase());
-
     const matchesSentiment =
       sentimentFilter === "All" ||
-      article.sentiment
-        ?.toLowerCase()
-        .includes(sentimentFilter.toLowerCase());
-
+      article.sentiment?.toLowerCase().includes(sentimentFilter.toLowerCase());
     return matchesSearch && matchesSentiment;
   });
 
@@ -83,12 +65,10 @@ function App() {
             <h1 className="text-2xl font-bold text-gray-900">
               AI News Intelligence
             </h1>
-
             <p className="text-sm text-gray-500">
               {articles.length} articles processed with AI insights
             </p>
           </div>
-
           <button
             onClick={fetchFreshNews}
             disabled={fetching}
@@ -102,7 +82,6 @@ function App() {
       {/* Filters */}
       <div className="max-w-6xl mx-auto px-6 py-6">
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
-          {/* Search */}
           <input
             type="text"
             placeholder="Search articles by title..."
@@ -110,8 +89,6 @@ function App() {
             onChange={(e) => setSearch(e.target.value)}
             className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
-          {/* Sentiment Filter */}
           <select
             value={sentimentFilter}
             onChange={(e) => setSentimentFilter(e.target.value)}
@@ -145,7 +122,6 @@ function App() {
                   <h2 className="text-lg font-semibold text-gray-900 leading-snug">
                     {article.title}
                   </h2>
-
                   <span
                     className={`text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap ${getSentimentColor(
                       article.sentiment
@@ -157,9 +133,7 @@ function App() {
 
                 {/* Summary */}
                 <p className="text-sm text-gray-600 mb-3">
-                  <span className="font-medium text-gray-800">
-                    Summary:
-                  </span>{" "}
+                  <span className="font-medium text-gray-800">Summary: </span>
                   {article.summary}
                 </p>
 
@@ -169,19 +143,13 @@ function App() {
                     <span className="font-medium text-gray-800 block mb-1">
                       Key Insights:
                     </span>
-
-                    <div className="whitespace-pre-line">
-                      {article.insights}
-                    </div>
+                    <div className="whitespace-pre-line">{article.insights}</div>
                   </div>
                 )}
 
                 {/* Footer */}
                 <div className="flex items-center justify-between text-xs text-gray-500 mt-3">
-                  <span>
-                    Source: {article.source || "Unknown"}
-                  </span>
-
+                  <span>Source: {article.source || "Unknown"}</span>
                   {article.articleUrl && (
                     <a
                       href={article.articleUrl}
@@ -203,4 +171,3 @@ function App() {
 }
 
 export default App;
-
