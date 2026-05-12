@@ -1,16 +1,45 @@
-# React + Vite
+# AI News Intelligence Platform — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React dashboard for the AI News Intelligence Platform. Displays AI-processed news articles with summaries, sentiment badges, and key insights fetched from the Spring Boot backend.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + Vite
+- Tailwind CSS
+- Axios
+- Deployed on Vercel
 
-## React Compiler
+## Setup (under 5 minutes)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone the repo
+   ```bash
+   git clone https://github.com/melonmusk20/ai_news_summary_frontend_model.git
+   cd ai_news_summary_frontend_model/frontend
+   ```
 
-## Expanding the ESLint configuration
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Start the dev server
+   ```bash
+   npm run dev
+   ```
+
+App runs on `http://localhost:5173`
+
+> Make sure the backend is running on `http://localhost:8080` before opening the app.
+
+## Features
+
+- **Live news feed** — articles fetched and AI-processed on demand
+- **Search** — filter articles by title keyword
+- **Sentiment filter** — view Positive / Negative / Neutral articles
+- **AI summaries** — 2-sentence summary per article
+- **Key insights** — 3 bullet-point insights per article
+- **Source links** — direct links to original articles
+
+## Connecting to Backend
+
+The app points to the deployed Render backend by default. To use a local backend, update `src/App.jsx` fetch URLs to `http://localhost:8080`.
