@@ -1,6 +1,6 @@
 # AI News Intelligence Platform — Frontend
 
-React dashboard for the AI News Intelligence Platform. Displays AI-processed news articles with summaries, sentiment badges, and key insights fetched from the Spring Boot backend.
+React dashboard that displays AI-processed news articles with summaries, sentiment analysis, and key insights fetched from the Spring Boot backend.
 
 ## Tech Stack
 
@@ -9,37 +9,66 @@ React dashboard for the AI News Intelligence Platform. Displays AI-processed new
 - Axios
 - Deployed on Vercel
 
-## Setup (under 5 minutes)
+## Live Demo
+
+https://ai-news-summary-frontend-model.vercel.app
+
+## Setup
 
 1. Clone the repo
    ```bash
    git clone https://github.com/melonmusk20/ai_news_summary_frontend_model.git
    cd ai_news_summary_frontend_model/frontend
-   ```
-
 2. Install dependencies
    ```bash
    npm install
-   ```
-
 3. Start the dev server
    ```bash
    npm run dev
-   ```
+ App runs on http://localhost:5173
+ Make sure the backend is running on http://localhost:8080 before opening the app.
 
-App runs on `http://localhost:5173`
+Features
+Live news feed fetched from database
+AI-generated 2-sentence summary per article
+Sentiment classification — Positive / Negative / Neutral
+3 key insights per article
+Search articles by title
+Filter by sentiment
+Links to original articles
+Backend Repo
+https://github.com/melonmusk20/ai_news_summary_backend_model
 
-> Make sure the backend is running on `http://localhost:8080` before opening the app.
+GitHub pe existing `README.md` edit karo ya naya banao root mein — yeh content paste karo.
+Pura ek sath de sab ## ``` ye sab ek sath
 
+# AI News Intelligence Platform — Frontend
+React dashboard that displays AI-processed news articles with summaries, sentiment analysis, and key insights fetched from the Spring Boot backend.
+## Tech Stack
+- React 19 + Vite
+- Tailwind CSS
+- Axios
+- Deployed on Vercel
+## Live Demo
+https://ai-news-summary-frontend-model.vercel.app
+## Setup
+1. Clone the repo
+   git clone https://github.com/melonmusk20/ai_news_summary_frontend_model.git
+   cd ai_news_summary_frontend_model/frontend
+2. Install dependencies
+   npm install
+3. Start the dev server
+   npm run dev
+App runs on http://localhost:5173
+Make sure the backend is running on http://localhost:8080 before opening the app.
 ## Features
-
-- **Live news feed** — articles fetched and AI-processed on demand
-- **Search** — filter articles by title keyword
-- **Sentiment filter** — view Positive / Negative / Neutral articles
-- **AI summaries** — 2-sentence summary per article
-- **Key insights** — 3 bullet-point insights per article
-- **Source links** — direct links to original articles
-
-## Connecting to Backend
-
-The app points to the deployed Render backend by default. To use a local backend, update `src/App.jsx` fetch URLs to `http://localhost:8080`.
+- Live news feed fetched from database
+- AI-generated 2-sentence summary per article
+- Sentiment classification — Positive / Negative / Neutral
+- 3 key insights per article
+- Search articles by title
+- Filter by sentiment
+- Links to original articles
+## Backend Repo
+https://github.com/melonmusk20/ai_news_summary_backend_model
+   
