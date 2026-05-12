@@ -58,7 +58,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div>
@@ -79,7 +78,6 @@ function App() {
         </div>
       </header>
 
-      {/* Filters */}
       <div className="max-w-6xl mx-auto px-6 py-6">
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <input
@@ -101,7 +99,6 @@ function App() {
           </select>
         </div>
 
-        {/* Articles */}
         {loading ? (
           <div className="text-center py-20 text-gray-500">
             Loading articles...
@@ -117,7 +114,6 @@ function App() {
                 key={article.id}
                 className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition"
               >
-                {/* Title + Sentiment */}
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h2 className="text-lg font-semibold text-gray-900 leading-snug">
                     {article.title}
@@ -131,13 +127,11 @@ function App() {
                   </span>
                 </div>
 
-                {/* Summary */}
                 <p className="text-sm text-gray-600 mb-3">
                   <span className="font-medium text-gray-800">Summary: </span>
                   {article.summary}
                 </p>
 
-                {/* Insights */}
                 {article.insights && (
                   <div className="text-sm text-gray-600 mb-3 bg-gray-50 p-3 rounded-lg">
                     <span className="font-medium text-gray-800 block mb-1">
@@ -147,7 +141,6 @@ function App() {
                   </div>
                 )}
 
-                {/* Footer */}
                 <div className="flex items-center justify-between text-xs text-gray-500 mt-3">
                   <span>Source: {article.source || "Unknown"}</span>
                   {article.articleUrl && (
@@ -170,4 +163,5 @@ function App() {
   );
 }
 
+export default App;
 export default App;
